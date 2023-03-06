@@ -1,5 +1,6 @@
 # Import packages
 import numpy as np
+import seaborn as sns
 import matplotlib.pyplot as plt
 
 def plot_scatter_plot(x, y, title, xlabel, ylabel):
@@ -39,3 +40,80 @@ def plot_scatter_plot(x, y, title, xlabel, ylabel):
     ax.set_yticklabels(labels)\
 
     plt.show()
+
+
+def plot_box(data, x, y, title, xlabel, ylabel):
+    """Plot a boxplot of y vs x where y is a categorical
+    feature and x is a numerical feature
+
+    Parameters:
+    -----------
+    data : pd.DataFrame
+        A pandas DataFrame
+    x : str
+        Variable name
+    y : str
+        Variable name
+    title : str
+        Title of box-plot
+    xlabel : str
+        X-axis label of box-plot
+    ylabel : str
+        Y-axis label of box-plot
+
+    Returns:
+    --------
+        None
+    """
+
+    fig, ax = plt.subplots(figsize=(10, 10))
+
+    # Boxplot
+    sns.boxplot(data=data, x=x, y=y, whis=[0, 100], width=0.6, palette="vlag")
+
+    # Labels
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+
+    # Add vertical lines
+    plt.grid(linestyle="--", linewidth=0.5, axis="x")
+
+
+def plot_bar(data, title, ylabel, ticks_range, labels, figsize=(8, 10)):
+    """Plot a bar-plot
+    Parameters:
+    -----------
+    data : pd.Series
+        A pandas Series
+    title : str
+        Title of bar-plot
+    ylabel : str
+        Y-axis label of bar-plot
+    ticks_range : list
+        A list of ticks
+    labels : list
+        A list of labels
+
+    Returns:
+    --------
+        None
+    """
+
+    # Draw Axis
+    fig, ax = plt.subplots(figsize=figsize)
+
+    # Plot Barplot
+    data.plot(kind="barh")
+
+    # Labels
+    plt.title(title)
+    plt.xlabel("Frequency (%)")
+    plt.ylabel(ylabel)
+
+    # Add vertical lines
+    plt.grid(linestyle="--", linewidth=0.5, axis="x")
+
+    # Change the x ticks
+    ax.set_xticks(ticks_range)
+    ax.set_xticklabels(labels)
