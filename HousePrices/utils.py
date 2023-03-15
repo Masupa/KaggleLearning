@@ -117,3 +117,70 @@ def plot_bar(data, title, ylabel, ticks_range, labels, figsize=(8, 10)):
     # Change the x ticks
     ax.set_xticks(ticks_range)
     ax.set_xticklabels(labels)
+    
+
+
+# DISTRIBUTION PLOTS - Helper Functions
+# -------------------------------------
+
+def plot_distribution_hist(variable, title_, x_label_, y_label_):
+    """Plot a histogram distribution a variable.
+    
+    Parameters:
+    -----------
+    variable : pd.Series
+        A pandas series contain a variable with it's values
+    title_ : str
+        Distribution title
+    x_label_ : str
+        Distribution x-label
+    y_label_ : str
+        Distribution y-label
+        
+    Returns:
+        None
+    """
+    
+    fig, ax = plt.subplots(figsize=(10, 5))
+
+    # Histogram
+    variable.plot(kind='hist', bins=20)
+
+    # Title Properties
+    fontdict = {"fontsize": 14, "fontweight": "bold"}
+
+    # Labels
+    plt.title(title_, fontdict=fontdict)
+    plt.xlabel(x_label_)
+    plt.ylabel(y_label_)
+
+    plt.show();
+
+    
+def plot_distribution_boxplot(variable, title_, x_label_):
+    """Plot a boxplot distribution a variable.
+    
+    Parameters:
+    -----------
+    variable : pd.Series
+        A pandas series contain a variable with it's values
+    title_ : str
+        Distribution title
+    x_label_ : str
+        Distribution x-label
+        
+    Returns:
+    --------
+        None
+    """
+    
+    fig, ax = plt.subplots(figsize=(10, 4))
+
+    # Boxplot
+    variable.plot(kind='box', vert=False)
+
+    # Labels
+    plt.title(title_)
+    plt.xlabel(x_label_)
+    
+    plt.show();
